@@ -1,0 +1,120 @@
+[
+  {
+    "id": "run_mvf8199y_zr3m",
+    "started_at": "2026-10-19T12:19:10.774Z",
+    "status": "completed",
+    "sources_selected": [
+      "src_remotive_eng"
+    ],
+    "sources_completed": [
+      "src_remotive_eng"
+    ],
+    "sources_failed": [],
+    "total_discovered": 12,
+    "total_valid": 6,
+    "total_new": 2,
+    "total_duplicates": 4,
+    "total_rejected": 6,
+    "synced_to_sheets": 0,
+    "log": [
+      {
+        "timestamp": "2026-10-19T12:19:10.774Z",
+        "level": "info",
+        "message": "Collection started for 1 source(s): Remotive Engineering Feed"
+      },
+      {
+        "timestamp": "2026-10-19T12:19:10.775Z",
+        "level": "info",
+        "source": "Remotive Engineering Feed",
+        "message": "Connecting to Remotive Engineering Feed (remotive)..."
+      },
+      {
+        "timestamp": "2026-10-19T12:19:10.832Z",
+        "level": "info",
+        "source": "Remotive Engineering Feed",
+        "message": "Discovered 12 raw listings. Running normalization & US/Canada eligibility checks..."
+      },
+      {
+        "timestamp": "2026-10-19T12:19:10.839Z",
+        "level": "info",
+        "source": "Remotive Engineering Feed",
+        "message": "6 passed validation, 6 filtered out."
+      },
+      {
+        "timestamp": "2026-10-19T12:19:10.839Z",
+        "level": "info",
+        "message": "Executing deduplication across 6 normalized candidate listings..."
+      },
+      {
+        "timestamp": "2026-10-19T12:19:10.840Z",
+        "level": "info",
+        "message": "Deduplication complete: 2 genuinely new vacancies found, 4 duplicates rejected."
+      },
+      {
+        "timestamp": "2026-10-19T12:19:10.841Z",
+        "level": "info",
+        "message": "Collection run finished with status: completed. Total new jobs saved: 2"
+      }
+    ],
+    "finished_at": "2026-10-19T12:19:10.841Z"
+  },
+  {
+    "id": "run_mvf810ws_3z1p",
+    "started_at": "2026-10-19T12:18:59.932Z",
+    "status": "completed",
+    "sources_selected": [
+      "src_remotive_eng"
+    ],
+    "sources_completed": [
+      "src_remotive_eng"
+    ],
+    "sources_failed": [],
+    "total_discovered": 12,
+    "total_valid": 6,
+    "total_new": 6,
+    "total_duplicates": 0,
+    "total_rejected": 6,
+    "synced_to_sheets": 0,
+    "log": [
+      {
+        "timestamp": "2026-10-19T12:18:59.932Z",
+        "level": "info",
+        "message": "Collection started for 1 source(s): Remotive Engineering Feed"
+      },
+      {
+        "timestamp": "2026-10-19T12:18:59.932Z",
+        "level": "info",
+        "source": "Remotive Engineering Feed",
+        "message": "Connecting to Remotive Engineering Feed (remotive)..."
+      },
+      {
+        "timestamp": "2026-10-19T12:19:00.039Z",
+        "level": "info",
+        "source": "Remotive Engineering Feed",
+        "message": "Discovered 12 raw listings. Running normalization & US/Canada eligibility checks..."
+      },
+      {
+        "timestamp": "2026-10-19T12:19:00.050Z",
+        "level": "info",
+        "source": "Remotive Engineering Feed",
+        "message": "6 passed validation, 6 filtered out."
+      },
+      {
+        "timestamp": "2026-10-19T12:19:00.051Z",
+        "level": "info",
+        "message": "Executing deduplication across 6 normalized candidate listings..."
+      },
+      {
+        "timestamp": "2026-10-19T12:19:00.051Z",
+        "level": "info",
+        "message": "Deduplication complete: 6 genuinely new vacancies found, 0 duplicates rejected."
+      },
+      {
+        "timestamp": "2026-10-19T12:19:00.052Z",
+        "level": "info",
+        "message": "Collection run finished with status: completed. Total new jobs saved: 6"
+      }
+    ],
+    "finished_at": "2026-10-19T12:19:00.052Z"
+  }
+]

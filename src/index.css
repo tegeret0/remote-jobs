@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+@media (max-width: 768px) {
+  .sidebar-desktop {
+    display: none !important;
+  }
+}
+@media (min-width: 769px) {
+  .sidebar-mobile {
+    display: none !important;
+  }
+}

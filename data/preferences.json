@@ -1,0 +1,40 @@
+{
+  "target_countries": [
+    "US",
+    "Canada"
+  ],
+  "remote_only": true,
+  "included_keywords": [
+    "Software Engineer",
+    "Full-Stack",
+    "Frontend",
+    "Backend",
+    "Full Stack",
+    "Developer",
+    "Web Developer",
+    "DevOps"
+  ],
+  "excluded_keywords": [
+    "intern",
+    "internship",
+    "unpaid",
+    "tutor",
+    "sales"
+  ],
+  "seniority_levels": [
+    "Junior",
+    "Mid",
+    "Senior",
+    "Staff",
+    "Lead",
+    "Principal"
+  ],
+  "employment_types": [
+    "Full-time",
+    "Contract"
+  ],
+  "min_salary": 0,
+  "max_freshness_days": 30,
+  "auto_sync": false,
+  "review_mode": false
+}

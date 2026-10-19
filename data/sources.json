@@ -1,0 +1,68 @@
+[
+  {
+    "id": "src_greenhouse_gitlab",
+    "name": "GitLab (Greenhouse)",
+    "type": "greenhouse",
+    "identifier": "gitlab",
+    "base_url": "https://boards-api.greenhouse.io/v1/boards/gitlab/jobs?content=true",
+    "enabled": true,
+    "health": "healthy",
+    "total_discovered": 0,
+    "total_new": 0,
+    "total_duplicates": 0,
+    "total_failed": 0
+  },
+  {
+    "id": "src_greenhouse_automattic",
+    "name": "Automattic (Greenhouse)",
+    "type": "greenhouse",
+    "identifier": "automattic",
+    "base_url": "https://boards-api.greenhouse.io/v1/boards/automattic/jobs?content=true",
+    "enabled": true,
+    "health": "healthy",
+    "total_discovered": 0,
+    "total_new": 0,
+    "total_duplicates": 0,
+    "total_failed": 0
+  },
+  {
+    "id": "src_greenhouse_figma",
+    "name": "Figma (Greenhouse)",
+    "type": "greenhouse",
+    "identifier": "figma",
+    "base_url": "https://boards-api.greenhouse.io/v1/boards/figma/jobs?content=true",
+    "enabled": true,
+    "health": "healthy",
+    "total_discovered": 0,
+    "total_new": 0,
+    "total_duplicates": 0,
+    "total_failed": 0
+  },
+  {
+    "id": "src_remotive_eng",
+    "name": "Remotive Engineering Feed",
+    "type": "remotive",
+    "identifier": "software-dev",
+    "base_url": "https://remotive.com/api/remote-jobs?category=software-dev&limit=40",
+    "enabled": true,
+    "health": "healthy",
+    "total_discovered": 24,
+    "total_new": 8,
+    "total_duplicates": 4,
+    "total_failed": 0,
+    "last_run_at": "2026-10-19T12:19:10.839Z"
+  },
+  {
+    "id": "src_lever_postings",
+    "name": "Postman (Lever)",
+    "type": "lever",
+    "identifier": "postman",
+    "base_url": "https://api.lever.co/v0/postings/postman?mode=json",
+    "enabled": true,
+    "health": "healthy",
+    "total_discovered": 0,
+    "total_new": 0,
+    "total_duplicates": 0,
+    "total_failed": 0
+  }
+]

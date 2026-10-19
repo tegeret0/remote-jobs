@@ -1,0 +1,6 @@
+{
+  "name": "Remote Job Intelligence Engine",
+  "description": "Discover, normalize, deduplicate, and synchronize US and Canadian remote software engineering jobs to Google Sheets.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
