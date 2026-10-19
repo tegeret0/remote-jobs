@@ -8,9 +8,18 @@ export class AshbyConnector implements BaseConnector {
     this.config = config;
   }
 
+  private extractOrg(input: string): string {
+    const trimmed = input.trim();
+    if (trimmed.includes('ashbyhq.com')) {
+      const match = trimmed.match(/ashbyhq\.com\/(?:posting-api\/job-board\/)?([a-zA-Z0-9_-]+)/);
+      if (match && match[1]) return match[1];
+    }
+    return trimmed;
+  }
+
   public async validateConfiguration(): Promise<{ isValid: boolean; error?: string }> {
-    const org = this.config.identifier?.trim();
-    if (!org) return { isValid: false, error: 'Ashby organization identifier is required' };
+    const org = this.extractOrg(this.config.identifier || '');
+    if (!org) return { isValid: false, error: 'Ashby organization identifier or URL is required' };
     if (!/^[a-zA-Z0-9_-]+$/.test(org)) {
       return { isValid: false, error: 'Invalid Ashby organization identifier' };
     }
@@ -27,7 +36,7 @@ export class AshbyConnector implements BaseConnector {
   }
 
   public async discoverJobs(): Promise<ConnectorResult> {
-    const org = this.config.identifier?.trim();
+    const org = this.extractOrg(this.config.identifier || '');
     if (!org || !/^[a-zA-Z0-9_-]+$/.test(org)) {
       return { success: false, discoveredJobs: [], error: 'Invalid Ashby organization' };
     }

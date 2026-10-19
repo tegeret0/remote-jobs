@@ -8,10 +8,19 @@ export class LeverConnector implements BaseConnector {
     this.config = config;
   }
 
+  private extractSite(input: string): string {
+    const trimmed = input.trim();
+    if (trimmed.includes('lever.co')) {
+      const match = trimmed.match(/lever\.co\/(?:v0\/postings\/)?([a-zA-Z0-9_-]+)/);
+      if (match && match[1]) return match[1];
+    }
+    return trimmed;
+  }
+
   public async validateConfiguration(): Promise<{ isValid: boolean; error?: string }> {
-    const site = this.config.identifier?.trim();
+    const site = this.extractSite(this.config.identifier || '');
     if (!site) {
-      return { isValid: false, error: 'Lever site name is required' };
+      return { isValid: false, error: 'Lever site name or URL is required' };
     }
     if (!/^[a-zA-Z0-9_-]+$/.test(site)) {
       return { isValid: false, error: 'Invalid Lever site format' };
@@ -29,7 +38,7 @@ export class LeverConnector implements BaseConnector {
   }
 
   public async discoverJobs(): Promise<ConnectorResult> {
-    const site = this.config.identifier?.trim();
+    const site = this.extractSite(this.config.identifier || '');
     if (!site || !/^[a-zA-Z0-9_-]+$/.test(site)) {
       return { success: false, discoveredJobs: [], error: 'Invalid Lever site' };
     }

@@ -9,6 +9,36 @@
     <meta property="og:description" content="Discover, normalize, deduplicate, and synchronize US and Canadian remote software engineering jobs to Google Sheets." />
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
+    <script>
+      (function() {
+        // Prevent extension errors when third-party extensions try to assign window.fetch in strict environments
+        try {
+          var realFetch = window.fetch;
+          var fetchHolder = realFetch;
+          Object.defineProperty(window, 'fetch', {
+            get: function() {
+              return fetchHolder;
+            },
+            set: function(val) {
+              fetchHolder = val;
+            },
+            configurable: true,
+            enumerable: true
+          });
+        } catch (e) {
+          // ignore
+        }
+
+        // Suppress unhandled errors from installed Chrome extensions
+        window.addEventListener('error', function(event) {
+          if (event && event.filename && event.filename.indexOf('chrome-extension://') !== -1) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+            return true;
+          }
+        }, true);
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

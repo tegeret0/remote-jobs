@@ -94,6 +94,79 @@ export const SourcesView: React.FC<SourcesViewProps> = ({
         </button>
       </div>
 
+      {/* Supported API Base Endpoints Reference & Quick Presets */}
+      <div className="p-6 rounded-xl bg-zinc-900/60 border border-zinc-800/80 space-y-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <div>
+            <h3 className="text-sm font-bold text-zinc-100 flex items-center gap-2">
+              <ShieldCheck className="w-4 h-4 text-teal-400" />
+              <span>Active ATS Platform Connectors & Endpoints</span>
+            </h3>
+            <p className="text-xs text-zinc-400 mt-0.5">
+              Paste the company slug or the full API/career URL. The engine canonicalizes the endpoint automatically.
+            </p>
+          </div>
+          <span className="text-[10px] font-mono text-zinc-500 uppercase bg-zinc-950 px-2 py-1 rounded border border-zinc-800">
+            4 Supported Connectors
+          </span>
+        </div>
+
+        {/* 4 Endpoints Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
+          <div className="p-3 bg-zinc-950 rounded-lg border border-zinc-800/80 space-y-1">
+            <div className="flex items-center justify-between">
+              <span className="font-bold text-cyan-400">Greenhouse API</span>
+              <span className="text-[9px] font-mono text-zinc-500 uppercase">Public REST</span>
+            </div>
+            <div className="text-[11px] font-mono text-zinc-400 break-all">
+              https://boards-api.greenhouse.io/v1/boards/<span className="text-teal-300">{'{company}'}</span>/jobs
+            </div>
+            <div className="text-[10px] text-zinc-500 pt-1">
+              Example: <button onClick={() => onAddSource({ name: 'Stripe', type: 'greenhouse', identifier: 'stripe', enabled: true })} className="text-cyan-400 underline hover:text-cyan-300">Add Stripe</button> • <button onClick={() => onAddSource({ name: 'Cloudflare', type: 'greenhouse', identifier: 'cloudflare', enabled: true })} className="text-cyan-400 underline hover:text-cyan-300">Add Cloudflare</button>
+            </div>
+          </div>
+
+          <div className="p-3 bg-zinc-950 rounded-lg border border-zinc-800/80 space-y-1">
+            <div className="flex items-center justify-between">
+              <span className="font-bold text-teal-400">Lever API</span>
+              <span className="text-[9px] font-mono text-zinc-500 uppercase">Public REST</span>
+            </div>
+            <div className="text-[11px] font-mono text-zinc-400 break-all">
+              https://api.lever.co/v0/postings/<span className="text-teal-300">{'{company}'}</span>
+            </div>
+            <div className="text-[10px] text-zinc-500 pt-1">
+              Example: <button onClick={() => onAddSource({ name: 'Postman', type: 'lever', identifier: 'postman', enabled: true })} className="text-cyan-400 underline hover:text-cyan-300">Add Postman</button> • <button onClick={() => onAddSource({ name: 'Netflix', type: 'lever', identifier: 'netflix', enabled: true })} className="text-cyan-400 underline hover:text-cyan-300">Add Netflix</button>
+            </div>
+          </div>
+
+          <div className="p-3 bg-zinc-950 rounded-lg border border-zinc-800/80 space-y-1">
+            <div className="flex items-center justify-between">
+              <span className="font-bold text-emerald-400">Ashby API</span>
+              <span className="text-[9px] font-mono text-zinc-500 uppercase">Posting API</span>
+            </div>
+            <div className="text-[11px] font-mono text-zinc-400 break-all">
+              https://api.ashbyhq.com/posting-api/job-board/<span className="text-teal-300">{'{company}'}</span>
+            </div>
+            <div className="text-[10px] text-zinc-500 pt-1">
+              Example: <button onClick={() => onAddSource({ name: 'Linear', type: 'ashby', identifier: 'linear', enabled: true })} className="text-cyan-400 underline hover:text-cyan-300">Add Linear</button> • <button onClick={() => onAddSource({ name: 'Ramp', type: 'ashby', identifier: 'ramp', enabled: true })} className="text-cyan-400 underline hover:text-cyan-300">Add Ramp</button>
+            </div>
+          </div>
+
+          <div className="p-3 bg-zinc-950 rounded-lg border border-zinc-800/80 space-y-1">
+            <div className="flex items-center justify-between">
+              <span className="font-bold text-amber-400">Remotive Feed</span>
+              <span className="text-[9px] font-mono text-zinc-500 uppercase">Public Feed</span>
+            </div>
+            <div className="text-[11px] font-mono text-zinc-400 break-all">
+              https://remotive.com/api/remote-jobs
+            </div>
+            <div className="text-[10px] text-zinc-500 pt-1">
+              Live Software Dev feed with full descriptions & salary data.
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Grid of Source Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {sources.map(source => {
@@ -242,6 +315,7 @@ export const SourcesView: React.FC<SourcesViewProps> = ({
                   onChange={e => setNewType(e.target.value as any)}
                   className="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-3 py-2 text-zinc-200 focus:outline-none focus:border-cyan-500"
                 >
+                  <option value="custom_api">Custom API / Public JSON Feed (Full URL)</option>
                   <option value="greenhouse">Greenhouse (boards-api.greenhouse.io)</option>
                   <option value="lever">Lever (api.lever.co/v0/postings)</option>
                   <option value="ashby">Ashby (jobs.ashbyhq.com)</option>
@@ -251,18 +325,24 @@ export const SourcesView: React.FC<SourcesViewProps> = ({
 
               <div>
                 <label className="block text-zinc-300 font-medium mb-1">
-                  Board Identifier / Slug
+                  {newType === 'custom_api' ? 'API Endpoint URL' : 'Board Identifier / Slug'}
                 </label>
                 <input
                   type="text"
-                  placeholder="e.g. cloudflare (from boards.greenhouse.io/cloudflare)"
+                  placeholder={
+                    newType === 'custom_api'
+                      ? 'https://api.example.com/jobs or public feed URL'
+                      : 'e.g. cloudflare (from boards.greenhouse.io/cloudflare)'
+                  }
                   value={newIdentifier}
                   onChange={e => setNewIdentifier(e.target.value)}
                   className="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-3 py-2 text-zinc-200 font-mono focus:outline-none focus:border-cyan-500"
                   required
                 />
                 <p className="text-[10px] text-zinc-500 mt-1">
-                  The company token used in the public career URL.
+                  {newType === 'custom_api'
+                    ? 'Enter the full HTTP/HTTPS endpoint returning JSON job listings.'
+                    : 'The company token used in the public career URL.'}
                 </p>
               </div>
 

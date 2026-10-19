@@ -8,12 +8,20 @@ export class GreenhouseConnector implements BaseConnector {
     this.config = config;
   }
 
-  public async validateConfiguration(): Promise<{ isValid: boolean; error?: string }> {
-    const token = this.config.identifier?.trim();
-    if (!token) {
-      return { isValid: false, error: 'Greenhouse board token is required' };
+  private extractToken(input: string): string {
+    const trimmed = input.trim();
+    if (trimmed.includes('greenhouse.io')) {
+      const match = trimmed.match(/boards(?:-api)?\.greenhouse\.io\/(?:v1\/boards\/)?([a-zA-Z0-9_-]+)/);
+      if (match && match[1]) return match[1];
     }
-    // Prevent SSRF: ensure token contains only letters, digits, dashes, and underscores
+    return trimmed;
+  }
+
+  public async validateConfiguration(): Promise<{ isValid: boolean; error?: string }> {
+    const token = this.extractToken(this.config.identifier || '');
+    if (!token) {
+      return { isValid: false, error: 'Greenhouse board token or URL is required' };
+    }
     if (!/^[a-zA-Z0-9_-]+$/.test(token)) {
       return { isValid: false, error: 'Invalid board token format (letters, digits, dashes only)' };
     }
@@ -30,7 +38,7 @@ export class GreenhouseConnector implements BaseConnector {
   }
 
   public async discoverJobs(): Promise<ConnectorResult> {
-    const token = this.config.identifier?.trim();
+    const token = this.extractToken(this.config.identifier || '');
     if (!token || !/^[a-zA-Z0-9_-]+$/.test(token)) {
       return { success: false, discoveredJobs: [], error: 'Invalid or missing Greenhouse token' };
     }

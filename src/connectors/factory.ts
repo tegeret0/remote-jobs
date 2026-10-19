@@ -4,6 +4,7 @@ import { GreenhouseConnector } from './greenhouse.ts';
 import { LeverConnector } from './lever.ts';
 import { AshbyConnector } from './ashby.ts';
 import { RemotiveConnector } from './remotive.ts';
+import { CustomApiConnector } from './custom_api.ts';
 
 export function createConnector(config: JobSourceConfig): BaseConnector {
   switch (config.type) {
@@ -15,7 +16,9 @@ export function createConnector(config: JobSourceConfig): BaseConnector {
       return new AshbyConnector(config);
     case 'remotive':
       return new RemotiveConnector(config);
+    case 'custom_api':
+      return new CustomApiConnector(config);
     default:
-      return new GreenhouseConnector(config);
+      return new CustomApiConnector(config);
   }
 }
